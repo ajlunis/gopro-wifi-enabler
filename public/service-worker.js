@@ -1,10 +1,10 @@
 const CACHE_NAME = 'gopro-wifi-enabler-cache-v1';
 const urlsToCache = [
-  '/',
-  '/assets/index-Bf6tBU-m.css',
-  '/assets/index-DzkS1RDX.js',
-  '/manifest.json',
-  '/favicon.ico'
+  '/gopro-wifi-enabler/',
+  '/gopro-wifi-enabler/assets/index-Bf6tBU-m.css',
+  '/gopro-wifi-enabler/assets/index-DzkS1RDX.js',
+  '/gopro-wifi-enabler/manifest.json',
+  '/gopro-wifi-enabler/favicon.ico'
 ];
 
 self.addEventListener('install', (event) => {
