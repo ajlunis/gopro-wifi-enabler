@@ -21,18 +21,8 @@ export default function Greeter({ onConnect, connecting, bluetoothUnavailable } 
     return (
 <Card style={{maxWidth: '400px'}}>
 <CardHeader
-        action={
-          <IconButton aria-label="settings" href="https://github.com/alunis/gopro-wifi-enabler">
-            <SiGithub />
-          </IconButton>
-        }
         title="GoPro WiFi Enabler"
-        subheader="Not an offering from GoPro"
       />
-<CardContent>
-    This application allows you to put your camera into WiFi Access Mode so that you can start working
-    with the <Link href="https://gopro.github.io/OpenGoPro/http_2_0">GoPro HTTP API</Link>. This is done by utilizing the <Link href="https://gopro.github.io/OpenGoPro/ble_2_0">GoPro Bluetooth API</Link>.
-</CardContent>
 <CardActions>
    { bluetoothUnavailable ? 
      <div className="error">Plattform does not support WebBluetooth. <Link href="https://github.com/alunis/gopro-wifi-enabler/wiki/Platform-support">More</Link></div> :
