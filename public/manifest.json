@@ -1,7 +1,7 @@
 {
   "name": "GoPro WiFi Enabler",
   "short_name": "GoProWiFi",
-  "start_url": ".",
+  "start_url": "/gopro-wifi-enabler/",
   "display": "standalone",
   "background_color": "#ffffff",
   "theme_color": "#000000",
