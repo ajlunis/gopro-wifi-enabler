@@ -8,6 +8,9 @@ import TextField from "@mui/material/TextField/TextField";
 import InputAdornment from "@mui/material/InputAdornment/InputAdornment";
 import IconButton from "@mui/material/IconButton/IconButton";
 import { ContentCopy } from "@mui/icons-material";
+import { SiApple } from "react-icons/si";
+import { SiLinux } from "react-icons/si";
+import { SiWindows } from "react-icons/si";
 
 enum Platform {
   Linux = "linux",
