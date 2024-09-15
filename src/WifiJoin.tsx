@@ -3,7 +3,6 @@ import { useState } from "react";
 import "./App.css";
 import ToggleButtonGroup from "@mui/material/ToggleButtonGroup/ToggleButtonGroup";
 import ToggleButton from "@mui/material/ToggleButton/ToggleButton";
-import { SiApple, SiLinux, SiWindows } from "@icons-pack/react-simple-icons";
 import TextField from "@mui/material/TextField/TextField";
 import InputAdornment from "@mui/material/InputAdornment/InputAdornment";
 import IconButton from "@mui/material/IconButton/IconButton";
