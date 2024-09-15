@@ -1,11 +1,10 @@
 const CACHE_NAME = 'gopro-wifi-enabler-cache-v1';
 const urlsToCache = [
-  '/',
-  '/index.html',
+  '/501ac2b9-ebbf-4c84-8547-ff56c93880cc',
+  '/index-Bf6tBU-m.css',
+  '/index-DzkS1RDX.js',
   '/manifest.json',
   '/favicon.ico',
-  '/logo192.png',
-  '/logo512.png',
   '/robots.txt'
 ];
 
