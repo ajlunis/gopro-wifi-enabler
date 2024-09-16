@@ -176,17 +176,7 @@ const CameraDisplay = ({
               Browse Media
             </Button>
 
-            {/* MiXplorer Button (only visible when WiFi is enabled) */}
-            <Button
-              type="button"
-              href="content://10.5.5.9:8080/gopro/media/list"
-              variant="contained"
-              fullWidth
-              startIcon={<Folder />}
-              style={{ marginTop: "8px" }}
-            >
-              Open MiXplorer
-            </Button>
+
           </Collapse>
 
           {/* Disconnect Bluetooth (always visible) */}
