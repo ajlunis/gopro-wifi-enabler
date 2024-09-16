@@ -146,8 +146,8 @@ const CameraDisplay = ({
             fullWidth
           />
           <Typography variant="body1" style={{ marginTop: "16px" }}>
-            Camera WebServer:{" "}
-            <Link href="http://10.5.5.9:8080">10.5.5.9:8080</Link>
+            Camera WebDAV Server:{" "}
+            <Link href="http://10.5.5.9:8080/videos/DCIM">http://10.5.5.9:8080/videos/DCIM</Link>
           </Typography>
         </Collapse>
       </CardContent>
