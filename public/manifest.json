@@ -5,7 +5,6 @@
   "display": "standalone",
   "scope": "/gopro-wifi-enabler/",
   "dir": "ltr",
-  "lang": "en",
   "id": "/gopro-wifi-enabler/",
   "orientation": "portrait",
   "background_color": "#ffffff",
