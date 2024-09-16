@@ -1,37 +1,20 @@
-import WifiJoin from "./WifiJoin";
-import FormGroup from "@mui/material/FormGroup/FormGroup";
-import FormControlLabel from "@mui/material/FormControlLabel/FormControlLabel";
-import Switch from "@mui/material/Switch/Switch";
-import Card from "@mui/material/Card/Card";
-import CardContent from "@mui/material/CardContent/CardContent";
-import TextField from "@mui/material/TextField/TextField";
-import CardActions from "@mui/material/CardActions/CardActions";
-import Button from "@mui/material/Button/Button";
-import InputAdornment from "@mui/material/InputAdornment/InputAdornment";
-import IconButton, {
-  IconButtonProps,
-} from "@mui/material/IconButton/IconButton";
-import { ContentCopy } from "@mui/icons-material";
-import { styled } from "@mui/material/styles";
-import React from "react";
-import ExpandMoreIcon from "@mui/icons-material/ExpandMore";
-import { Collapse, Link, Typography } from "@mui/material";
-import QRCode from "react-qr-code";
-
-interface ExpandMoreProps extends IconButtonProps {
-  expand: boolean;
-}
-
-const ExpandMore = styled((props: ExpandMoreProps) => {
-  const { expand, ...other } = props;
-  return <IconButton {...other} />;
-})(({ theme, expand }) => ({
-  transform: !expand ? "rotate(0deg)" : "rotate(180deg)",
-  marginLeft: "auto",
-  transition: theme.transitions.create("transform", {
-    duration: theme.transitions.duration.shortest,
-  }),
-}));
+import React, { useEffect } from "react";
+import {
+  FormGroup,
+  FormControlLabel,
+  Switch,
+  Card,
+  CardContent,
+  TextField,
+  CardActions,
+  Button,
+  InputAdornment,
+  IconButton,
+  Link,
+  Typography,
+  Collapse, // For animation
+} from "@mui/material";
+import { Wifi, Bluetooth, PermMedia, ContentCopy } from "@mui/icons-material";
 
 interface Props {
   wifiApActive: boolean;
@@ -48,89 +31,128 @@ const CameraDisplay = ({
   onWifiEnabledChange,
   onDisconnect,
 }: Props) => {
-  const [expanded, setExpanded] = React.useState(false);
+  const [wifiEnabled, setWifiEnabled] = React.useState(wifiApActive);
 
-  const handleExpandClick = () => {
-    setExpanded(!expanded);
+  useEffect(() => {
+    setWifiEnabled(wifiApActive); // Sync state when props change
+  }, [wifiApActive]);
+
+  const handleWifiToggle = (event: React.ChangeEvent<HTMLInputElement>) => {
+    const isEnabled = event.target.checked;
+    setWifiEnabled(isEnabled);
+    onWifiEnabledChange(isEnabled); // Propagate to parent
   };
 
   return (
-    <Card sx={{ minWidth: 275, maxWidth: 300 }}>
+    <Card
+      sx={{
+        minWidth: 275,
+        width: { xs: "100%", sm: 400 }, // 100% on mobile, 400px on larger screens
+        maxWidth: 500,
+        margin: { xs: "0 auto", sm: "auto" }, // Centered on larger screens
+      }}
+    >
       <CardContent>
         <FormGroup>
-          <FormControlLabel
-            control={
-              <Switch
-                checked={wifiApActive}
-                onChange={($event, checked) => onWifiEnabledChange(checked)}
-              />
-            }
-            label="AP Enabled"
-            labelPlacement="start"
-          />
+          <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
+            <Wifi />
+            <FormControlLabel
+              control={
+                <Switch
+                  checked={wifiEnabled}
+                  onChange={handleWifiToggle}
+                />
+              }
+              label="WiFi Enabled"
+              labelPlacement="start"
+            />
+          </div>
         </FormGroup>
 
-        <TextField
-          label="SSID"
-          variant="standard"
-          defaultValue={wifiAp}
-          InputProps={{
-            readOnly: true,
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton edge="end" onClick={() => navigator.clipboard.writeText(wifiAp)}>
-                  <ContentCopy />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-          margin="dense"
-          fullWidth
-        />
-        <TextField
-          label="Password"
-          variant="standard"
-          defaultValue={wifiPw}
-          InputProps={{
-            readOnly: true,
-            endAdornment: (
-              <InputAdornment position="end">
-                <IconButton edge="end" onClick={() => navigator.clipboard.writeText(wifiPw)}>
-                  <ContentCopy />
-                </IconButton>
-              </InputAdornment>
-            ),
-          }}
-          margin="dense"
-          fullWidth
-        />
-        <WifiJoin wifiAp={wifiAp} wifiPw={wifiPw} />
-        <Typography variant="body2" style={{marginTop: '16px'}}>
-          Your camera is accessable at:{" "}
-          <Link href="http://10.5.5.9:8080">10.5.5.9:8080</Link>. For example,
-          you can browse the{" "}
-          <Link href="http://10.5.5.9:8080/gopro/media/list">media</Link>.
-        </Typography>
+        {/* Collapse component for smooth animation */}
+        <Collapse in={wifiEnabled} timeout="auto" unmountOnExit>
+          <TextField
+            label="SSID"
+            variant="standard"
+            value={wifiAp}
+            InputProps={{
+              readOnly: true,
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    edge="end"
+                    onClick={() => navigator.clipboard.writeText(wifiAp)}
+                  >
+                    <ContentCopy />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+            margin="dense"
+            fullWidth
+          />
+          <TextField
+            label="Password"
+            variant="standard"
+            value={wifiPw}
+            InputProps={{
+              readOnly: true,
+              endAdornment: (
+                <InputAdornment position="end">
+                  <IconButton
+                    edge="end"
+                    onClick={() => navigator.clipboard.writeText(wifiPw)}
+                  >
+                    <ContentCopy />
+                  </IconButton>
+                </InputAdornment>
+              ),
+            }}
+            margin="dense"
+            fullWidth
+          />
+          <Typography variant="body1" style={{ marginTop: "16px" }}>
+            Camera WebServer:{" "}
+            <Link href="http://10.5.5.9:8080">10.5.5.9:8080</Link>
+          </Typography>
+        </Collapse>
       </CardContent>
+
       <CardActions disableSpacing>
-        <Button type="button" onClick={onDisconnect} variant="outlined">
-          Disconnect
-        </Button>
-        <ExpandMore
-          expand={expanded}
-          onClick={handleExpandClick}
-          aria-expanded={expanded}
-          aria-label="show more"
+        <div
+          style={{
+            display: "flex",
+            flexDirection: wifiEnabled ? "row" : "column",
+            gap: "6px",
+            width: "100%",
+          }}
         >
-          <ExpandMoreIcon />
-        </ExpandMore>
+          {/* Use Collapse to animate the Browse Media button */}
+          <Collapse in={wifiEnabled} timeout="auto" unmountOnExit>
+            <Button
+              type="button"
+              onClick={() =>
+                window.open("http://10.5.5.9:8080/gopro/media/list")
+              }
+              variant="outlined"
+              fullWidth={!wifiEnabled}
+              startIcon={<PermMedia />} // Add Media Icon
+            >
+              Browse Media
+            </Button>
+          </Collapse>
+
+          <Button
+            type="button"
+            onClick={onDisconnect}
+            variant="outlined"
+            fullWidth // Always fullWidth for Disconnect Bluetooth
+            startIcon={<Bluetooth />} // Add Bluetooth Icon
+          >
+            Disconnect Bluetooth
+          </Button>
+        </div>
       </CardActions>
-      <Collapse in={expanded} timeout="auto" unmountOnExit>
-        <QRCode
-          value={`WIFI:T:WPA;S:${wifiAp};P:${wifiPw};;`}
-          style={{ margin: "20px" }}
-        />
-      </Collapse>
     </Card>
   );
 };
