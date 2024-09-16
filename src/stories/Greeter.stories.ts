@@ -8,20 +8,31 @@ const meta: Meta<typeof Greeter> = {
     layout: "centered",
   },
   tags: [],
-  argTypes: {},
+  argTypes: {
+    onConnect: { action: 'clicked' }, // Track the Connect button action
+  },
 };
 
 export default meta;
 type Story = StoryObj<typeof Greeter>;
 
 export const Idle: Story = {
-  args: {},
+  args: {
+    connecting: false,
+    bluetoothUnavailable: false,
+  },
 };
 
 export const Connecting: Story = {
-  args: { connecting: true },
+  args: {
+    connecting: true,
+    bluetoothUnavailable: false,
+  },
 };
 
 export const BluetoothUnavailable: Story = {
-  args: { bluetoothUnavailable: true },
+  args: {
+    connecting: false,
+    bluetoothUnavailable: true,
+  },
 };
