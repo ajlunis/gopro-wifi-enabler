@@ -134,9 +134,10 @@ const CameraDisplay = ({
               onClick={() =>
                 window.open("http://10.5.5.9:8080/gopro/media/list")
               }
-              variant="outlined"
+              variant="contained" // Make it contained to match the style
               fullWidth={!wifiEnabled}
               startIcon={<PermMedia />} // Add Media Icon
+              style={{ margin: "auto" }} // Same style as "Connect to camera"
             >
               Browse Media
             </Button>
