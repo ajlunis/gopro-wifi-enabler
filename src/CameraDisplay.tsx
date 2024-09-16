@@ -163,18 +163,7 @@ const CameraDisplay = ({
         >
           {/* Browse Media Button (visible only when WiFi is enabled) */}
           <Collapse in={wifiEnabled} timeout="auto" unmountOnExit>
-            <Button
-              type="button"
-              onClick={() =>
-                window.open("http://10.5.5.9:8080/gopro/media/list")
-              }
-              variant="contained"
-              fullWidth={!wifiEnabled}
-              startIcon={<PermMedia />}
-              style={{ margin: "auto" }}
-            >
-              Browse Media
-            </Button>
+
 
 
           </Collapse>
