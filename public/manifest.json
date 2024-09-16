@@ -3,6 +3,7 @@
   "short_name": "GoProWiFi",
   "start_url": "/gopro-wifi-enabler/",
   "display": "standalone",
+  "id": "2334563423239",
   "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#000000",
