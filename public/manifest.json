@@ -11,6 +11,21 @@
   "launch_handler": {
     "client_mode": ["navigate-existing", "auto"]
 },
+  "screenshots": [
+    {
+      "src": "/gopro-wifi-enabler/logo512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any"
+    },
+    {
+      "src": "/gopro-wifi-enabler/logo512.png",
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any",
+      "form_factor": "wide"
+    }
+  ],
   "icons": [
     {
       "src": "/gopro-wifi-enabler/logo192.png",
