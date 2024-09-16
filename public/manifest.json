@@ -3,6 +3,8 @@
   "short_name": "GoProWiFi",
   "start_url": "/gopro-wifi-enabler/",
   "display": "standalone",
+  "dir": "ltr",
+  "lang": "en",
   "id": "/gopro-wifi-enabler/",
   "orientation": "portrait",
   "background_color": "#ffffff",
