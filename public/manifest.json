@@ -3,6 +3,7 @@
   "short_name": "GoProWiFi",
   "start_url": "/gopro-wifi-enabler/",
   "display": "standalone",
+  "orientation": "portrait",
   "background_color": "#ffffff",
   "theme_color": "#000000",
   "description": "Control GoPro's WiFi settings via this web app.",
