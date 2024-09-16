@@ -3,6 +3,7 @@
   "short_name": "GoProWiFi",
   "start_url": "/gopro-wifi-enabler/",
   "display": "standalone",
+  "scope": "/gopro-wifi-enabler/",
   "dir": "ltr",
   "lang": "en",
   "id": "/gopro-wifi-enabler/",
