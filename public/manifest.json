@@ -8,6 +8,9 @@
   "background_color": "#ffffff",
   "theme_color": "#000000",
   "description": "Control GoPro's WiFi settings via this web app.",
+  "launch_handler": {
+    "client_mode": ["navigate-existing", "auto"]
+},
   "icons": [
     {
       "src": "/gopro-wifi-enabler/logo192.png",
