@@ -179,7 +179,7 @@ const CameraDisplay = ({
             {/* MiXplorer Button (only visible when WiFi is enabled) */}
             <Button
               type="button"
-              href="intent://webdav://10.5.5.9:8080/gopro/media/list/#Intent;package=com.mixplorer.silver;end"
+              href="content://10.5.5.9:8080/gopro/media/list"
               variant="contained"
               fullWidth
               startIcon={<Folder />}
