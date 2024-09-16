@@ -12,9 +12,11 @@ import {
   IconButton,
   Link,
   Typography,
-  Collapse, // For animation
+  Collapse,
+  Box,
 } from "@mui/material";
-import { Wifi, Bluetooth, PermMedia, ContentCopy } from "@mui/icons-material";
+import { Wifi, Bluetooth, PermMedia, ContentCopy, Folder } from "@mui/icons-material";
+import WifiIcon from '@mui/icons-material/Wifi';
 
 interface Props {
   wifiApActive: boolean;
@@ -52,7 +54,39 @@ const CameraDisplay = ({
         margin: { xs: "0 auto", sm: "auto" }, // Centered on larger screens
       }}
     >
+      {/* Title */}
       <CardContent>
+      <Box
+        sx={{
+          textAlign: 'center',
+          padding: '16px',
+          backgroundColor: '#e3f2fd',
+          borderRadius: '8px',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          marginBottom: '16px',
+          position: 'relative',
+        }}
+      >
+        {/* Centered Wifi Icon above title */}
+        <WifiIcon sx={{ fontSize: '40px', color: '#1976d2', marginBottom: '8px' }} />
+        <Typography
+          variant="h4"
+          sx={{
+            fontWeight: 'bold',
+            color: '#1976d2',
+            textTransform: 'uppercase',
+            letterSpacing: '2px',
+            fontSize: '24px',
+            userSelect: 'none',
+          }}
+        >
+          GoPro WiFi Enabler
+        </Typography>
+      </Box>
+
+        {/* WiFi toggle */}
         <FormGroup>
           <div style={{ display: "flex", alignItems: "center", gap: "8px" }}>
             <Wifi />
@@ -69,7 +103,7 @@ const CameraDisplay = ({
           </div>
         </FormGroup>
 
-        {/* Collapse component for smooth animation */}
+        {/* Collapse for WiFi-enabled content */}
         <Collapse in={wifiEnabled} timeout="auto" unmountOnExit>
           <TextField
             label="SSID"
@@ -127,28 +161,41 @@ const CameraDisplay = ({
             width: "100%",
           }}
         >
-          {/* Use Collapse to animate the Browse Media button */}
+          {/* Browse Media Button (visible only when WiFi is enabled) */}
           <Collapse in={wifiEnabled} timeout="auto" unmountOnExit>
             <Button
               type="button"
               onClick={() =>
                 window.open("http://10.5.5.9:8080/gopro/media/list")
               }
-              variant="contained" // Make it contained to match the style
+              variant="contained"
               fullWidth={!wifiEnabled}
-              startIcon={<PermMedia />} // Add Media Icon
-              style={{ margin: "auto" }} // Same style as "Connect to camera"
+              startIcon={<PermMedia />}
+              style={{ margin: "auto" }}
             >
               Browse Media
             </Button>
+
+            {/* MiXplorer Button (only visible when WiFi is enabled) */}
+            <Button
+              type="button"
+              href="intent://#Intent;package=com.mixplorer;end"
+              variant="contained"
+              fullWidth
+              startIcon={<Folder />}
+              style={{ marginTop: "8px" }}
+            >
+              Open MiXplorer
+            </Button>
           </Collapse>
 
+          {/* Disconnect Bluetooth (always visible) */}
           <Button
             type="button"
             onClick={onDisconnect}
             variant="outlined"
-            fullWidth // Always fullWidth for Disconnect Bluetooth
-            startIcon={<Bluetooth />} // Add Bluetooth Icon
+            fullWidth
+            startIcon={<Bluetooth />}
           >
             Disconnect Bluetooth
           </Button>
